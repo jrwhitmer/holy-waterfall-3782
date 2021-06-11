@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe 'flights index page' do
+RSpec.describe 'airline show page' do
   before :each do
     @airline_1 = Airline.create!(name: "Delta")
     @airline_2 = Airline.create!(name: "United")
@@ -25,41 +25,11 @@ RSpec.describe 'flights index page' do
     @passenger_flight_9 = PassengerFlight.create!(passenger_id: @passenger_4.id, flight_id: @flight_3.id)
     @passenger_flight_10 = PassengerFlight.create!(passenger_id: @passenger_4.id, flight_id: @flight_4.id)
   end
-  it 'lists all the flights numbers' do
-    visit "/flights"
+  it 'shows a unique list of adult passengers that have flights on that airline' do
+    visit "/airlines/#{@airline_1.id}"
 
-    expect(page).to have_content(@flight_1.number)
-    expect(page).to have_content(@flight_2.number)
-    expect(page).to have_content(@flight_3.number)
-    expect(page).to have_content(@flight_4.number)
-  end
-
-  it 'lists the airline for each flight' do
-    visit "/flights"
-
-      expect(page).to have_content(@airline_1.name)
-      expect(page).to have_content(@airline_1.name)
-  end
-
-  it 'lists names of passengers for each flight' do
-    visit "/flights"
-
-    expect(page).to have_content(@passenger_1.name)
     expect(page).to have_content(@passenger_2.name)
-  end
-
-  it 'has a button to remove a passenger from a flight' do
-    visit "/flights"
-
-    expect(page).to have_button("Remove Passenger")
-  end
-
-  it 'removes the passenger from the flight and updates on the index page, but does not detroy the passenger' do
-    visit "/flights"
-#i cant test this, im giving up for now maybe i will get back to it maybe not.
-    within("div", :text => @flight_1.number, :text => @passenger_1.name) do
-        click_button("Remove Passenger")
-        expect(page).to have_no_content(@passenger_1.name)
-    end
+    expect(page).to have_content(@passenger_3.name)
+    expect(page).to have_no_content(@passenger_1.name)
   end
 end

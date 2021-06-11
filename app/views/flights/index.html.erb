@@ -1,10 +1,18 @@
 <h1>All Flights:</h1>
 
 <% @flights.each do |flight| %>
+<div>
     <p>Flight Number: <%= flight.number %></p>
     <p>Airline: <%= flight.airline.name %></p>
     <p>Passengers:</p>
     <% flight.passengers.each do |passenger| %>
+    <div>
       <p><%= passenger.name %></p>
+      <% @passflight = PassengerFlight.where('flight_id = ?', flight.id).where('passenger_id = ?', passenger.id) %>
+      <%= form_with url: "/flights/#{flight.id}/passenger_flight/#{@passflight.id}", method: :delete do |form| %>
+        <% form.submit "Remove Passenger" %>
+      <% end %>
     <% end %>
+  </div>
+<div>
 <% end %>
