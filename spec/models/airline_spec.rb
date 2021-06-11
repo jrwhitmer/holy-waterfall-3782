@@ -30,11 +30,15 @@ RSpec.describe Airline, type: :model do
     @passenger_flight_10 = PassengerFlight.create!(passenger_id: @passenger_4.id, flight_id: @flight_4.id)
   end
   describe 'class methods' do
-    describe '.' do
+    describe '.unique_adult_passengers' do
+
     end
   end
   describe 'instance methods' do
     describe '#' do
+      it 'can return all passengers who are above age' do
+        expect(@airline_1.unique_adult_passengers[0].name).to eq(@passenger_2.name)
+      end
     end
   end
 end
