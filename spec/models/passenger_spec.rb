@@ -8,11 +8,11 @@ RSpec.describe Passenger, type: :model do
     @airline_1 = Airline.create!(name: "Delta")
     @airline_2 = Airline.create!(name: "United")
 
-    @flight_1 = Flight.create!(number: "1111", date: "01/01/01", departure_city: "City 1", arrival_city: "City 1B")
-    @flight_2 = Flight.create!(number: "2222", date: "02/02/02", departure_city: "City 2", arrival_city: "City 2B")
-    @flight_3 = Flight.create!(number: "3333", date: "03/03/03", departure_city: "City 3", arrival_city: "City 3B")
-    @flight_4 = Flight.create!(number: "4444", date: "04/04/04", departure_city: "City 4", arrival_city: "City 4B")
-
+    @flight_1 = Flight.create!(number: "1111", date: "01/01/01", departure_city: "City 1", arrival_city: "City 1B", airline_id: @airline_1.id)
+    @flight_2 = Flight.create!(number: "2222", date: "02/02/02", departure_city: "City 2", arrival_city: "City 2B", airline_id: @airline_1.id)
+    @flight_3 = Flight.create!(number: "3333", date: "03/03/03", departure_city: "City 3", arrival_city: "City 3B", airline_id: @airline_2.id)
+    @flight_4 = Flight.create!(number: "4444", date: "04/04/04", departure_city: "City 4", arrival_city: "City 4B", airline_id: @airline_2.id)
+    
     @passenger_1 = Passenger.create!(name: "Passenger 1", age: 1)
     @passenger_2 = Passenger.create!(name: "Passenger 2", age: 22)
     @passenger_3 = Passenger.create!(name: "Passenger 3", age: 33)
