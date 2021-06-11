@@ -1,9 +1,5 @@
 require 'rails_helper'
-RSpec.describe Passenger, type: :model do
-  describe 'relationships' do
-    it { should have_many(:passenger_flights) }
-    it { should have_many(:flights).through(:passenger_flights) }
-  end
+RSpec.describe 'flights index page' do
   before :each do
     @airline_1 = Airline.create!(name: "Delta")
     @airline_2 = Airline.create!(name: "United")
@@ -29,12 +25,7 @@ RSpec.describe Passenger, type: :model do
     @passenger_flight_9 = PassengerFlight.create!(passenger_id: @passenger_4.id, flight_1: @flight_3.id)
     @passenger_flight_10 = PassengerFlight.create!(passenger_id: @passenger_4.id, flight_1: @flight_4.id)
   end
-  describe 'class methods' do
-    describe '.' do
-    end
-  end
-  describe 'instance methods' do
-    describe '#' do
-    end
+  it '' do
+
   end
 end
