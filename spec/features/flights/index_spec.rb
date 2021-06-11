@@ -14,16 +14,16 @@ RSpec.describe 'flights index page' do
     @passenger_3 = Passenger.create!(name: "Passenger 3", age: 33)
     @passenger_4 = Passenger.create!(name: "Passenger 4", age: 44)
 
-    @passenger_flight_1 = PassengerFlight.create!(passenger_id: @passenger_1.id, flight_1: @flight_1.id)
-    @passenger_flight_2 = PassengerFlight.create!(passenger_id: @passenger_1.id, flight_1: @flight_2.id)
-    @passenger_flight_3 = PassengerFlight.create!(passenger_id: @passenger_2.id, flight_1: @flight_1.id)
-    @passenger_flight_4 = PassengerFlight.create!(passenger_id: @passenger_2.id, flight_1: @flight_2.id)
-    @passenger_flight_5 = PassengerFlight.create!(passenger_id: @passenger_2.id, flight_1: @flight_3.id)
-    @passenger_flight_6 = PassengerFlight.create!(passenger_id: @passenger_3.id, flight_1: @flight_2.id)
-    @passenger_flight_7 = PassengerFlight.create!(passenger_id: @passenger_3.id, flight_1: @flight_3.id)
-    @passenger_flight_8 = PassengerFlight.create!(passenger_id: @passenger_3.id, flight_1: @flight_4.id)
-    @passenger_flight_9 = PassengerFlight.create!(passenger_id: @passenger_4.id, flight_1: @flight_3.id)
-    @passenger_flight_10 = PassengerFlight.create!(passenger_id: @passenger_4.id, flight_1: @flight_4.id)
+    @passenger_flight_1 = PassengerFlight.create!(passenger_id: @passenger_1.id, flight_id: @flight_1.id)
+    @passenger_flight_2 = PassengerFlight.create!(passenger_id: @passenger_1.id, flight_id: @flight_2.id)
+    @passenger_flight_3 = PassengerFlight.create!(passenger_id: @passenger_2.id, flight_id: @flight_1.id)
+    @passenger_flight_4 = PassengerFlight.create!(passenger_id: @passenger_2.id, flight_id: @flight_2.id)
+    @passenger_flight_5 = PassengerFlight.create!(passenger_id: @passenger_2.id, flight_id: @flight_3.id)
+    @passenger_flight_6 = PassengerFlight.create!(passenger_id: @passenger_3.id, flight_id: @flight_2.id)
+    @passenger_flight_7 = PassengerFlight.create!(passenger_id: @passenger_3.id, flight_id: @flight_3.id)
+    @passenger_flight_8 = PassengerFlight.create!(passenger_id: @passenger_3.id, flight_id: @flight_4.id)
+    @passenger_flight_9 = PassengerFlight.create!(passenger_id: @passenger_4.id, flight_id: @flight_3.id)
+    @passenger_flight_10 = PassengerFlight.create!(passenger_id: @passenger_4.id, flight_id: @flight_4.id)
   end
   it 'lists all the flights numbers' do
     visit "/flights"
@@ -37,36 +37,14 @@ RSpec.describe 'flights index page' do
   it 'lists the airline for each flight' do
     visit "/flights"
 
-    within("##{@flight_1.id}") do
       expect(page).to have_content(@airline_1.name)
-    end
-
-    within("##{@flight_2.id}") do
       expect(page).to have_content(@airline_1.name)
-    end
-
-    within("##{@flight_3.id}") do
-      expect(page).to have_content(@airline_2.name)
-    end
-
-    within("##{@flight_4.id}") do
-      expect(page).to have_content(@airline_2.name)
-    end
-
   end
 
   it 'lists names of passengers for each flight' do
     visit "/flights"
 
-    within("##{@flight_1.id}") do
-      expect(page).to have_content(@passenger_1.name)
-      expect(page).to have_content(@passenger_2.name)
-    end
-
-    within("##{@flight_2.id}") do
-      expect(page).to have_content(@passenger_1.name)
-      expect(page).to have_content(@passenger_2.name)
-      expect(page).to have_content(@passenger_3.name)
-    end
+    expect(page).to have_content(@passenger_1.name)
+    expect(page).to have_content(@passenger_2.name)
   end
 end
